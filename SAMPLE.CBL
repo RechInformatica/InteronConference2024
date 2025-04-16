@@ -15,8 +15,8 @@
       *>--------------------------------------------------------------------------------------------------------------<*
        working-storage            section.
        77  msg                    object reference MessageBox.
-       77  w-number               pic is 9(04)    value is zeros.
-       77  w-text                 pic is x any length value is spaces.
+       77  w-number               pic 9(04)       value zeros.
+       77  w-text                 pic x any length value spaces.
       *>--------------------------------------------------------------------------------------------------------------<*
        procedure                  division.
        begin.

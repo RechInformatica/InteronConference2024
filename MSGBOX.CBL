@@ -57,33 +57,33 @@
       *>-> Self reference to this object
        77  selfInstance           object reference MessageBox.
       *>-> Message text
-       77  w-text                 pic x any length value is spaces.
+       77  w-text                 pic x any length value spaces.
       *>-> Message title
-       77  w-title                pic x any length value is spaces.
+       77  w-title                pic x any length value spaces.
       *>-> Icon
-       77  w-icon                 pic is 9(01)    value is mb-default-icon comp-x.
-           88 w-icon-default                      value is mb-default-icon.
-           88 w-icon-warning                      value is mb-warning-icon.
-           88 w-icon-error                        value is mb-error-icon.
+       77  w-icon                 pic 9(01)       value mb-default-icon comp-x.
+           88 w-icon-default                      value mb-default-icon.
+           88 w-icon-warning                      value mb-warning-icon.
+           88 w-icon-error                        value mb-error-icon.
       *>-> Buttons
-       77  w-buttons              pic is 9(01)    value is mb-ok comp-x.
-           88 w-buttons-ok                        value is mb-ok.
-           88 w-buttons-yesno                     value is mb-yes-no.
-           88 w-buttons-okcancel                  value is mb-ok-cancel.
-           88 w-buttons-yesnocancel               value is mb-yes-no-cancel.
-       77  w-default-button       pic is 9(01)    value is mb-yes comp-x.
-           88 w-default-button-yes                value is mb-yes.
-           88 w-default-button-no                 value is mb-no.
+       77  w-buttons              pic 9(01)       value mb-ok comp-x.
+           88 w-buttons-ok                        value mb-ok.
+           88 w-buttons-yesno                     value mb-yes-no.
+           88 w-buttons-okcancel                  value mb-ok-cancel.
+           88 w-buttons-yesnocancel               value mb-yes-no-cancel.
+       77  w-default-button       pic 9(01)       value mb-yes comp-x.
+           88 w-default-button-yes                value mb-yes.
+           88 w-default-button-no                 value mb-no.
       *>-> Return
-       77  w-return               pic is 9(01)    value is zeros comp-x.
-           88 w-return-yes                        value is mb-yes.
-           88 w-return-no                         value is mb-no.
-           88 w-return-cancel                     value is mb-cancel.
+       77  w-return               pic 9(01)       value zeros comp-x.
+           88 w-return-yes                        value mb-yes.
+           88 w-return-no                         value mb-no.
+           88 w-return-cancel                     value mb-cancel.
       *>-> Text substitutions table
        01  w-subst-tab.
            05 w-subst-occ                        occurs dynamic
                                                capacity in w-subst-size initialized.
-              10 w-subst          pic x any length value is spaces.
+              10 w-subst          pic x any length value spaces.
       *>--------------------------------------------------------------------------------------------------------------<*
        procedure                  division.
       *>--------------------------------------------------------------------------------------------------------------<*
@@ -110,7 +110,7 @@
        linkage                    section.
        77  inText                 object reference ICobolVar.
        procedure                  division using inText returning selfInstance.
-           move    function trim(inText) to w-subst(w-subst-size + 1).
+           move    $trim(inText) to w-subst(w-subst-size + 1).
        end method.
       *>--------------------------------------------------------------------------------------------------------------<*
       *>/**
@@ -225,7 +225,7 @@
                  until            table-i = 0
               move spaces    to   place-holder,
               move table-i   to   mask-i,
-              string              "%", function trim(mask-i)
+              string              "%", $trim(mask-i)
                  into             place-holder,
               call "C$REPLACE_ALL" using w-text, place-holder, w-subst(table-i),
            end-perform.
